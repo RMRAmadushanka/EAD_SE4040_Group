@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "9jgqbb0KPGme65Hb0PiEaSThPJJxNov89p3vfej4btztt3eUN85d0sAGGg4OTD+o3SDlMlog++ov+Kyp7THrVQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\RMRAM\\OneDrive\\Desktop\\FULL EAD\\WEB Server\\EAD_SE4040_Group\\web_server\\web_server.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\RMRAM\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "C:\\Users\\RMRAM\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\RMRAM\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
+    "C:\\Users\\RMRAM\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "C:\\Users\\RMRAM\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
+    "C:\\Users\\RMRAM\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.5.0\\swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}
