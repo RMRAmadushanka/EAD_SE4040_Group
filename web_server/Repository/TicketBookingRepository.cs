@@ -95,5 +95,15 @@ namespace web_server.Repository
             }
         }
 
+        public void CancelReservation(string reservationId)
+        {
+            _mongoTicketCollection.DeleteOne(x => x.Id == reservationId);
+        }
+
+        public TicketBooking GetReservationById(string reservationId)
+        {
+            return _mongoTicketCollection.Find(x => x.Id == reservationId).FirstOrDefault();
+        }
+
     }
 }
