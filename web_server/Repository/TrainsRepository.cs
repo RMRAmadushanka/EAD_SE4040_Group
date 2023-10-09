@@ -44,7 +44,16 @@ namespace WEB_SERVER.Repository
             return result.ModifiedCount > 0;
 
         }
+        public async Task<Train> GetTrainScheduleById(string id)
+        {
+            return await _mongoTrainCollection.Find(_ => _.Id == id).FirstOrDefaultAsync();
+        }
 
+
+        public async Task DeleteScheduleAsync(string id)
+        {
+            await _mongoTrainCollection.DeleteOneAsync(_ => _.Id == id);
+        }
        
 
  
