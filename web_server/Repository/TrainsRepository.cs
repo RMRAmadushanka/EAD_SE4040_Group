@@ -1,14 +1,18 @@
 using MongoDB.Driver;
+using web_server.Collections;
+using web_server.Repository;
 using WEB_SERVER.Collections;
- 
+
 namespace WEB_SERVER.Repository
 {
     public class TrainsRepository : ITrainsRepository
     {
         private readonly IMongoCollection<Train> _mongoTrainCollection;
+        private readonly IMongoCollection<TicketBooking> _mongoTicketCollection;
         public TrainsRepository(IMongoDatabase mongoDatabase)
         {
             _mongoTrainCollection = mongoDatabase.GetCollection<Train>("Train");
+            _mongoTicketCollection = mongoDatabase.GetCollection<TicketBooking>("Ticket");
         }
         public async Task CreateSchedule(Train newTrain)
         {
@@ -45,13 +49,26 @@ namespace WEB_SERVER.Repository
 
         }
 
-       
+        public async Task<bool> HasBookingsForTrainAsync(string trainId)
+        {
+            var hasBookings = await _mongoTicketCollection
+                .Find(ticket => ticket.TrainId == trainId)
+                .AnyAsync();
 
- 
+            return hasBookings;
+        }
+        public async Task UpdateTrainStatusAsync(string id, bool isActive)
+        {
+            var filter = Builders<Train>.Filter.Eq(train => train.Id, id);
+            var update = Builders<Train>.Update.Set(train => train.IsActive, isActive);
+            await _mongoTrainCollection.UpdateOneAsync(filter, update);
+        }
 
- 
 
-       
+
+
+
+
 
     }
 

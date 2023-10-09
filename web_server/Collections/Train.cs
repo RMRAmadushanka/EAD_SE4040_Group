@@ -33,7 +33,8 @@ namespace web_server.Collections
         [BsonElement("EndTime")]
         public string EndTime { get; set; }
 
- 
+        [BsonElement("isActive")]
+        public bool IsActive { get; set; }
 
         [BsonElement("CreatedDate")]
         public DateTime CreatedDate { get; set; }

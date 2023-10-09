@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
+using web_server.Collections;
 using web_server.Repository;
 using WEB_SERVER.Collections;
 
@@ -104,6 +105,8 @@ namespace web_server.Repository
         {
             return _mongoTicketCollection.Find(x => x.Id == reservationId).FirstOrDefault();
         }
+
+     
 
     }
 }
