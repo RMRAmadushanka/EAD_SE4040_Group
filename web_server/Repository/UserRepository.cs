@@ -1,9 +1,9 @@
 using MongoDB.Driver;
-using WEB_SERVER.Collections;
+using web_server.Collections;
 
  
 
-namespace WEB_SERVER.Repository
+namespace web_server.Repository
 {
     public class UserRepository : IUserRepository
     {
