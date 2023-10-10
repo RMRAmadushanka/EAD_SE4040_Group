@@ -1,7 +1,7 @@
 using web_server.Collections;
-using WEB_SERVER.Collections;
 
-namespace WEB_SERVER.Repository
+
+namespace web_server.Repository
 {
     // Interface for interacting with train schedules in the repository
     public interface ITrainsRepository

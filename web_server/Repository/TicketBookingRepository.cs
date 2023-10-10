@@ -1,11 +1,9 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using web.server.Collections;
-using web_server.Repository;
-using WEB_SERVER.Collections;
+using web_server.Collections;
 
-namespace WEB_SERVER.Repository
+namespace web_server.Repository
 {
     public class TicketBookingRepository : ITicketBookingRepository
     {

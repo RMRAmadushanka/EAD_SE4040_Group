@@ -1,4 +1,4 @@
-﻿namespace WEB_SERVER.Models
+﻿namespace web_server.Models
 {
     public class MongoDBSettings
     {

@@ -1,9 +1,8 @@
 using MongoDB.Driver;
 using web_server.Collections;
-using web_server.Repository;
-using WEB_SERVER.Collections;
 
-namespace WEB_SERVER.Repository
+
+namespace web_server.Repository
 {
     public class TrainsRepository : ITrainsRepository
     {
