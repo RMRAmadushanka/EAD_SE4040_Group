@@ -28,7 +28,8 @@ namespace web_server
                 var client = new MongoClient(mongosettings.ConnectionString);
                 return client.GetDatabase(mongosettings.DatabaseName);
             });
-
+            builder.Services.AddSingleton<ITrainsRepository, TrainsRepository>();
+            builder.Services.AddSingleton<IUserRepository, UserRepository>();
             builder.Services.AddSingleton<ITicketBookingRepository, TicketBookingRepository>();
             var app = builder.Build();
             app.UseCors();
