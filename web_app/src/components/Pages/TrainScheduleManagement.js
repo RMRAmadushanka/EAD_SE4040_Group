@@ -3,9 +3,10 @@ import { Table, Button, Modal, Form } from "react-bootstrap";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import TimePicker from "react-bootstrap-time-picker";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+
+//Train Schedule management component
 function TrainScheduleManagement() {
   // Define state variables for schedule data, form data, and modal visibility
   const [schedules, setSchedules] = useState([]);
@@ -24,11 +25,12 @@ function TrainScheduleManagement() {
   const [endHour, setEndHour] = useState("00");
   const [endMinute, setEndMinute] = useState("00");
   const [endPeriod, setEndPeriod] = useState("AM");
-  const [showDeleteModal, setShowDeleteModal] = useState(false); // New modal state
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   // Function to show the modal for deleting a schedule
   const handleShowDeleteModal = (id) => {
-    setFormData({ id }); // Set the id in formData
+    // Set the id in formData
+    setFormData({ id });
     setShowDeleteModal(true);
   };
 
@@ -40,7 +42,7 @@ function TrainScheduleManagement() {
   // Function to fetch schedule data from the API
   const fetchSchedules = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/train");
+      const response = await axios.get("http://localhost:5000/web/alltrain");
       if (response.status === 200) {
         const data = await response.data;
         setSchedules(data);
@@ -49,6 +51,31 @@ function TrainScheduleManagement() {
       }
     } catch (error) {
       console.error("Error:", error);
+    }
+  };
+  const handleToggleIsActive = async (id) => {
+    try {
+      // Find the schedule with the matching ID
+      const updatedSchedule = schedules.find((schedule) => schedule.Id === id);
+
+      // Invert the IsActive status
+      updatedSchedule.IsActive = !updatedSchedule.IsActive;
+
+      // Send a PUT request to update the IsActive status on the server
+      await axios.put(
+        `http://localhost:5000/api/train/${id}?isActive=${updatedSchedule.IsActive}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      window.location.reload();
+    } catch (error) {
+      toast(
+        "Cannot change the status as there are existing bookings for this train."
+      );
     }
   };
 
@@ -84,7 +111,7 @@ function TrainScheduleManagement() {
     } else {
       setFormData({
         id: "",
-        trainName:"",
+        trainName: "",
         startStation: "",
         endStation: "",
         startTime: "",
@@ -120,8 +147,8 @@ function TrainScheduleManagement() {
         !formData.startStation ||
         !formData.endStation ||
         !startTime ||
-        !endTime||
-        !formData.trainName||
+        !endTime ||
+        !formData.trainName ||
         !formData.createdDate
       ) {
         alert("Please fill in all fields.");
@@ -143,7 +170,7 @@ function TrainScheduleManagement() {
       // Construct the schedule data object to send to the API
       const scheduleData = {
         Id: "",
-        trainName:formData.trainName,
+        trainName: formData.trainName,
         startStation: formData.startStation,
         endStation: formData.endStation,
         startTime: startTime,
@@ -151,7 +178,7 @@ function TrainScheduleManagement() {
         createdDate: formData.createdDate,
       };
 
-      // Define the API endpoint
+      // Define the API endpoint for update and add train schedules
       const endpoint = formData.id
         ? `http://localhost:5000/web/updateTrainSchedule?id=${formData.id}`
         : "http://localhost:5000/web/addTrainSchedule";
@@ -203,8 +230,9 @@ function TrainScheduleManagement() {
   }, []);
 
   return (
-    <div>
+    <div style={{ paddingTop: 20 }}>
       <Button onClick={() => handleShowModal()}>Add Schedule</Button>
+      <div style={{ padding: 10 }}></div>
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -213,8 +241,9 @@ function TrainScheduleManagement() {
             <th>End Station</th>
             <th>Start Time</th>
             <th>End Time</th>
-            <th>Action</th>
             <th>Created Date</th>
+            <th>Is active</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -234,6 +263,15 @@ function TrainScheduleManagement() {
                   minute: "2-digit",
                   second: "2-digit",
                 })}
+              </td>
+              <td>
+                <Form.Check
+                  type="switch"
+                  id={`isActive-switch-${schedule.Id}`}
+                  label=""
+                  checked={schedule.IsActive} // Set the switch state based on IsActive
+                  onChange={() => handleToggleIsActive(schedule.Id)}
+                />
               </td>
               <td>
                 <Button onClick={() => handleShowModal(schedule)}>Edit</Button>
@@ -257,7 +295,7 @@ function TrainScheduleManagement() {
         </Modal.Header>
         <Modal.Body>
           <Form>
-          <Form.Group controlId="startStation">
+            <Form.Group controlId="startStation">
               <Form.Label>Train Name</Form.Label>
               <Form.Control
                 type="text"
@@ -364,18 +402,6 @@ function TrainScheduleManagement() {
             </Form.Group>
             <Form.Group controlId="createdDate">
               <Form.Label>Created Date</Form.Label>
-              {/* <DatePicker
-                selected={formData.createdDate}
-                onChange={(date) =>
-                  setFormData({ ...formData, createdDate: date })
-                }
-                dateFormat="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-                showTimeSelect
-                timeFormat="HH:mm:ss"
-                timeIntervals={1}
-                timeCaption="Time"
-                className="form-control"
-              /> */}
               <DatePicker
                 selected={formData.createdDate}
                 value={formData.createdDate}

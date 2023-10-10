@@ -1,8 +1,6 @@
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
 
- 
-
 namespace web_server.Collections
 {
     public class Train
@@ -13,36 +11,23 @@ namespace web_server.Collections
         [BsonElement("TrainName")]
         public string TrainName { get; set; }
 
- 
-
         [BsonElement("StartStation")]
         public string StartStation { get; set; }
-
- 
 
         [BsonElement("EndStation")]
         public string EndStation { get; set; }
 
- 
-
         [BsonElement("StartTime")]
         public string StartTime { get; set; }
-
- 
 
         [BsonElement("EndTime")]
         public string EndTime { get; set; }
 
-        [BsonElement("isActive")]
+        [BsonElement("IsActive")]
         public bool IsActive { get; set; }
 
         [BsonElement("CreatedDate")]
         public DateTime CreatedDate { get; set; }
 
- 
-
     }
 }
-
-
-has context menu
