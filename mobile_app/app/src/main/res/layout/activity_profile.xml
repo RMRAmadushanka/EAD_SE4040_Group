@@ -22,6 +22,15 @@
                     android:textStyle="bold"
                     android:textColor="#ffff"
                     />
+                <TextView
+                    android:id="@+id/textViewUsername"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="User Name"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:textColor="#ffff"
+                    android:layout_marginTop="16dp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -69,7 +78,7 @@
                             <Button
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:id="@+id/btnprofile"
+                                android:id="@+id/btnMakeReservation"
                                 android:background="@android:color/transparent"
                                 />
                         </RelativeLayout>
@@ -107,7 +116,7 @@
                             <Button
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:id="@+id/btnrout"
+                                android:id="@+id/btnMyBookings"
                                 android:background="@android:color/transparent"/>
                         </RelativeLayout>
 
@@ -151,7 +160,7 @@
                             <Button
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:id="@+id/btnhistory"
+                                android:id="@+id/btnDeactivateAccount"
                                 android:background="@android:color/transparent"/>
                         </RelativeLayout>
 
@@ -188,7 +197,7 @@
                             <Button
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:id="@+id/btnfeedbak"
+                                android:id="@+id/btnLogout"
                                 android:background="@android:color/transparent"/>
                         </RelativeLayout>
 
