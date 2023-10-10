@@ -1,8 +1,6 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Collections",
-    "\\Controllers",
     "\\Repository"
   ],
   "SelectedNode": "\\Repository\\TicketBookingRepository.cs",
